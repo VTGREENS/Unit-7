@@ -1,0 +1,24 @@
+.h3{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 480px;
+    height: 50px;
+    border: 2px solid black;
+    background-color: bisque;
+    color: red;
+}
+
+.villan{
+    display: inline-flex;
+    border: 5px solid black;
+    width: 177px;
+    height: 659px;
+}
+
+.p{
+    display: inline-flex;
+    width: 480px;
+    height: 659px;
+    font-size: 15pt;
+}
