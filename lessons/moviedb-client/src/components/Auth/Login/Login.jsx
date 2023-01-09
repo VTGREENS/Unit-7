@@ -1,14 +1,16 @@
 import { useRef } from "react";
 import { FormGroup, Form, Label, Input, Button } from "reactstrap";
-
+import FullWidthButton from "../../Buttons/FullWidthButton";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = (props) => {
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
 
     async function handleSubmit(e){
-        e.prevenDefault();
+        e.preventDefault();
 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -18,7 +20,7 @@ const Login = (props) => {
     let bodyObject = JSON.stringify({email, password});
 
     let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "applications/json");
+    myHeaders.append("Content-Type", "application/json");
 
     const requestOptions = {
         headers: myHeaders,
@@ -28,7 +30,14 @@ const Login = (props) => {
     try {
         const response = await fetch(url, requestOptions);
         const data = await response.json()
-        console.log(data)
+        console.log(data);
+        if(data.message==="Success"){
+        // We are free to navigate to another page
+        props.updateToken(data.token);
+        navigate("/movie");
+        }else{
+            alert(data.message);
+        }
     } catch (error) {
         console.log(error.message);
         
@@ -45,8 +54,10 @@ const Login = (props) => {
             <FormGroup>
                 <Label>Password:</Label>
                 <Input type="password" innerRef={passwordRef}/>
-            <Button type="Submit" color="primary">Log In</Button>
             </FormGroup>
+            <FullWidthButton>
+            <Button type="submit" color="primary">Log In</Button>
+            </FullWidthButton>
         </Form>
     </>
     );

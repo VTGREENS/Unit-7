@@ -5,15 +5,16 @@ import { Col, Container, Row } from "reactstrap";
 const Auth = (props) => {
     return (  
         <>
-        <h2>Hello from Auth</h2>
+        <h2></h2>
         <Container>
             <Row>
                 <Col md="6">
-            <Signup />
+            <Signup updateToken={props.updateToken}/>
                 </Col>
-            <Login />
-
-            </Row>
+            <Col md="6">   
+            <Login updateToken={props.updateToken} />
+            </Col>
+        </Row>
         </Container>
         </>
     );
