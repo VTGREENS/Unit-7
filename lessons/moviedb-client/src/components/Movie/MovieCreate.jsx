@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import APIURL from "../../helper/environment";
 import FullWidthButton from "../Buttons/FullWidthButton";
+
 
 const MovieCreate = (props) => {
     const movieTitleRef = useRef();
@@ -19,7 +21,7 @@ const MovieCreate = (props) => {
     const isCurrentlyInTheaters = isCurrentlyInTheatersRef.current.value;
     const rating = ratingRef.current.value;
 
-    let url = `http://localhost:4000/movie/add`;
+    let url = `${APIURL}/movie/add`;
 
     let bodyObject = JSON.stringify({movieTitle, movieDescription, movieYear, isCurrentlyInTheaters, rating});
 

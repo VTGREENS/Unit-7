@@ -3,6 +3,8 @@ import { Button, Form, FormGroup, Input, Label, Row, Col, Container, Alert } fro
 import FullWidthButton from "../Buttons/FullWidthButton";
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import APIURL from "../../helper/environment";
+
 
 
 
@@ -20,7 +22,7 @@ const MovieEdit = (props) => {
     
     async function handleSubmit(e) {
         e.preventDefault();
-        let url =`http://localhost:4000/movie/update/${id}`;
+        let url =`${APIURL}/movie/update/${id}`;
 
         let bodyObject = JSON.stringify({movieTitle, movieDescription, movieYear, isCurrentlyInTheaters, rating});
 
@@ -58,7 +60,7 @@ const MovieEdit = (props) => {
 
     }
     const fetchMovie = async () => {
-        const url = `http://localhost:4000/movie/${id}`;
+        const url = `${APIURL}/movie/${id}`;
         let myHeaders = new Headers();
         myHeaders.append("Authorization", props.token);
     

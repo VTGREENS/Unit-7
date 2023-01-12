@@ -1,13 +1,15 @@
 import { Button, Table } from "reactstrap"
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"
-import FullWidthButton from "../Buttons/FullWidthButton";
+import APIURL from "../../helper/environment";
+
+
 
 const MovieTable = (props) => {
   const decoded = props.token ? jwt_decode(props.token) : "";
   const navigate = useNavigate();
     async function deleteMovie(id){
-        const url =`http://localhost:4000/movie/${id}`;
+        let url =`${APIURL} /movie/${id}`;
 
         let myHeaders = new Headers()
         myHeaders.append("Authorization", props.token);
